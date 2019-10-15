@@ -1,0 +1,18 @@
+who is sitting across?
+who is sitting next?
+
+variables : sitting positions
+values ; people at those positions
+
+Constraints:
+- 1 person per seat
+
+With 20 People: 20! states
+
+Easy Approach -> Local Search
+- gives no guarantee
+
+
+Hosts
+- 
+Guest
