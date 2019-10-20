@@ -20,23 +20,33 @@ def search(table):
     p = 0 #person
     c = 0
     l = 0 #likeness
-
+    
     to = [] #table order
     p = 6 # or random number to start
     r = p
     while r not in to:
-        l = m[r][c]
-        print(to)
-        print(p)
-        print(r)
-        print(c)
-        print(l)
+        #l = m[r][c]
+        c = 0
         to.append(p) # add to table
-        for c in range(9):
-            if l < m[r][c] and c not in to:
+        #c = 0
+        l = m[r][c]
+        while c < 10: #make dynamic
+            if (l <= m[r][c]) and (c not in to):
                 l = m[r][c]
                 p = c
+            c = c+1
         r = p
+    
+    #fixer
+    i = 0
+    for i in range(9): #make dynamic
+        if i not in to:
+            to.append(i)
+
+    print(to)
+    print(table)
+    
+
     
         
 
