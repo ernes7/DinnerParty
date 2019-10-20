@@ -15,6 +15,32 @@ def data():
     inst.close()
     return matrix
 
+def search(table):
+    m = data() #matrix of guest and hosts
+    p = 0 #person
+    c = 0
+    l = 0 #likeness
+
+    to = [] #table order
+    p = 6 # or random number to start
+    r = p
+    while r not in to:
+        l = m[r][c]
+        print(to)
+        print(p)
+        print(r)
+        print(c)
+        print(l)
+        to.append(p) # add to table
+        for c in range(9):
+            if l < m[r][c] and c not in to:
+                l = m[r][c]
+                p = c
+        r = p
+    
+        
+
+
 def scoring(table):
     m = data() #matrix of guest and hosts
     r = 0 #rows
@@ -47,10 +73,11 @@ def scoring(table):
             if p < 5 and table[r+1][c] >= 5:  #make dynamic
                 s = s + 2
 
-    print(s)
+    #print(s)
 
 print(data())
-scoring(table)
+search(table)
+#scoring(table)
 
 
 
