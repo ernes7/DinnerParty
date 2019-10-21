@@ -1,10 +1,12 @@
 import os
 import numpy
+import random
 
+#tables with random data to be replaced later
 table = numpy.array([])
 table = numpy.random.randint(1,10, size=(2,5))
 
-# Table set up with all 0's
+# Matrix from file set up.
 def data():
     inst = open("hw1-inst1.txt", "r")
     f = inst.readline()
@@ -15,20 +17,19 @@ def data():
     inst.close()
     return matrix
 
-def search(table):
+# search path to seat people at the table
+def search():
     m = data() #matrix of guest and hosts
     p = 0 #person
     c = 0
     l = 0 #likeness
     
     to = [] #table order
-    p = 6 # or random number to start
+    p = random.randint(0,9) # random vertex to start
     r = p
     while r not in to:
-        #l = m[r][c]
         c = 0
         to.append(p) # add to table
-        #c = 0
         l = m[r][c]
         while c < 10: #make dynamic
             if (l <= m[r][c]) and (c not in to):
@@ -36,29 +37,35 @@ def search(table):
                 p = c
             c = c+1
         r = p
-    
     #fixer
     i = 0
     for i in range(9): #make dynamic
         if i not in to:
             to.append(i)
 
-    print(to)
-    print(table)
+    return to
     
+#convert search path into deterministic table
+def convert(table):
+    ordered = search()
+    i = 0
+    r = 0
+    c = 0
+    for c in range(5):  #make dynamic
+        table[r][c] = ordered[i]
+        i = i+1
+    for c in range(5):  #make dynamic
+        table[r+1][c] = ordered[i]
+        i = i+1
+    return table
 
-    
-        
-
-
+#find a score given a table   
 def scoring(table):
     m = data() #matrix of guest and hosts
     r = 0 #rows
     c = 0 #columns
     s = 0 #score
     p = 0 #person
-
-    print(table)
 
     # Add up scores horizontally
     # 1<->2, 2<->3, 3<->4 ... etc
@@ -82,12 +89,27 @@ def scoring(table):
                 s = s + m[table[r+1][c]][p]
             if p < 5 and table[r+1][c] >= 5:  #make dynamic
                 s = s + 2
+    
+    return s
 
-    #print(s)
+def main():
+    # retrive name of file from arguments
+    # store into a string
 
-print(data())
-search(table)
-#scoring(table)
+    #retrieve number of people from file
+    #create random table
+
+    # pass the string to convert(string,table) "which calls search(string) then data(string)"
+    # matrix is created!
+
+    #convert() returns ordered table. store!
+    #pass table to scoring(table)
+
+    #export score for file. 
+
+    pass
+
+print(scoring(convert(table)))
 
 
 

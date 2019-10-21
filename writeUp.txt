@@ -23,3 +23,12 @@ Guest
 # now find biggest score of P(y) that has not been a P yet. 
 # P(y) = index = y. X += y.
 # Repeat
+
+Still need to get done:
+    how to run the program:
+        random vs deterministic
+        name of file
+    Implement score to deterministic ( i made it random)
+    Use the other 2 files
+    Export solutions
+
