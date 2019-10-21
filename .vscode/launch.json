@@ -4,9 +4,12 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
+
     
         {
             "name": "Python: Current File",
+            "args": ["hw1-inst2.txt"],
             "type": "python",
             "request": "launch",
             "program": "${file}",
