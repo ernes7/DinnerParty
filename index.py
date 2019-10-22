@@ -31,8 +31,9 @@ def search(filename,n):
     
     to = [] #table order
     p = random.randint(0,n-1) # random vertex to start
-    if filename == "hw1-inst2.txt": #solves a bug with inst2
-        p=1
+    #if filename == "hw1-inst2.txt": #solves a bug with inst2
+        #p=1
+    print("P=",p)
 
     r = p
     while r not in to:
@@ -61,44 +62,46 @@ def convert(table,filename,n):
     c = 0
     nHalf = int(n/2)
 
-    for c in range(nHalf):  #make dynamic
+    for c in range(0,nHalf-1):  #make dynamic
         table[r][c] = ordered[i]
         i = i+1
-    c=0
-    for c in range(nHalf):  #make dynamic
+    
+    for c in range(0,nHalf-1):  #make dynamic
         table[r+1][c] = ordered[i]
         i = i+1
     return table
 
 #find a score given a table   
-def scoring(table,filename):
+def scoring(table,filename,n):
     m = data(filename) #matrix of guest and hosts
     r = 0 #rows
     c = 0 #columns
     s = 0 #score
     p = 0 #person
+    nHalf = int(n/2)
 
     # Add up scores horizontally
     # 1<->2, 2<->3, 3<->4 ... etc
-    for r in range(2):
-        for c in range(4):  #make dynamic
+    for r in range(0,1):
+        for c in range(0,nHalf-1):  #make dynamic
             p = table[r][c]
             #right
             if table[r][c+1]:
                 s = s + m[p][table[r][c+1]]
                 s = s + m[table[r][c+1]][p]
-            if p < 5 and table[r][c+1] >= 5:  #make dynamic
+            if p < nHalf and table[r][c+1] >= nHalf:  #make dynamic
                 s = s + 1
 
     # Add up scores vertically
     # 1<->(n/2)+1, 2<->(n/2)+2, 3<->(n/2)+3 ... etc
-    for r in range(1):
-        for c in range(5): #make dynamic
+    
+    for r in range(0,1):
+        for c in range(nHalf): #make dynamic
             p = table[r][c]
             if (table[r+1][c]):
                 s = s + m[p][table[r+1][c]]
                 s = s + m[table[r+1][c]][p]
-            if p < 5 and table[r+1][c] >= 5:  #make dynamic
+            if p < 5 and table[r+1][c] >= nHalf:  #make dynamic
                 s = s + 2
     
     return s
@@ -129,22 +132,32 @@ def main():
             #Getting scores in 60 seconds
 
             #https://stackoverflow.com/questions/24374620/python-loop-to-run-for-certain-amount-of-seconds
-            FinalScore = scoring(orderedTable,filename)
+            FinalScore = scoring(orderedTable,filename,n)
 
-            t_end = time.time() + 1
+            t_end = time.time() + 60
             print("Waiting 60 seconds")
             while True:
-                score = scoring(orderedTable,filename)
+                orderedTable = convert(table,filename,n)
+                score = scoring(orderedTable,filename,n)
+                print(score)
                 if FinalScore < score:
                     FinalScore = score
+                    maxTable = orderedTable  #table for FinalScore
                 if time.time() > t_end:
                     break
-            print(FinalScore)
 
             #Exporting Data
             FinalScore = str(FinalScore)
             f = open("test.txt", "w")
             f.write(FinalScore)
+            x=1
+            for i in range(1,n+1):
+                f.writelines("\n")
+                #f.writelines(str(orderedTable[x]))
+                x = x+1
+                f.write(" ")
+                f.write(str(i))
+
             f.close()
 
             #-----------------------
@@ -152,6 +165,9 @@ def main():
             print(filename,"not in directory")
     else:
         print("Incorrect Number of Arguments")
+    
+    print(FinalScore)
+    print(maxTable)
 
 
    

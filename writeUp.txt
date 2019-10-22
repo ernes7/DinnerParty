@@ -13,33 +13,12 @@ Easy Approach -> Local Search
 - gives no guarantee
 
 
-Hosts
-- 
-Guest
-
-# pick a P = person. ( Host 1 for example)
-# y = best score of P. y = index. X += y 
-# jump to that Index and make it P. 
-# now find biggest score of P(y) that has not been a P yet. 
-# P(y) = index = y. X += y.
-# Repeat
-
 Still need to get done:
-    Use the other 2 files
-    Export solutions
+    Export to correct files.
+    Export order of table.
+    Comment Code
+    Write writeUp
 
-28
-3 1
-7 2
-9 3
-8 4
-4 5
-5 6
-2 7
-6 8
-1 9
-0 10
-[[3 1] 7 9 8 4]
- [5 2 6 1 0]]
+
 
 
