@@ -134,7 +134,7 @@ def main():
             #https://stackoverflow.com/questions/24374620/python-loop-to-run-for-certain-amount-of-seconds
             FinalScore = scoring(orderedTable,filename,n)
 
-            t_end = time.time() + 60
+            t_end = time.time() + 1
             print("Waiting 60 seconds")
             while True:
                 orderedTable = convert(table,filename,n)
@@ -148,15 +148,49 @@ def main():
 
             #Exporting Data
             FinalScore = str(FinalScore)
-            f = open("test.txt", "w")
-            f.write(FinalScore)
-            x=1
-            for i in range(1,n+1):
-                f.writelines("\n")
-                #f.writelines(str(orderedTable[x]))
-                x = x+1
-                f.write(" ")
-                f.write(str(i))
+            if filename == "hw1-inst1.txt":
+                f = open("hw1-sol1.txt", "w")
+                f.write(FinalScore)
+                x=1
+                for i in range(1,n+1):
+                    f.writelines("\n")
+                    #f.writelines(str(orderedTable[x]))
+                    x = x+1
+                    f.write(" ")
+                    f.write(str(i)) 
+
+            elif filename == "hw1-inst2.txt":
+                f = open("hw1-sol2.txt", "w")
+                f.write(FinalScore)
+                x=1
+                for i in range(1,n+1):
+                    f.writelines("\n")
+                    #f.writelines(str(orderedTable[x]))
+                    x = x+1
+                    f.write(" ")
+                    f.write(str(i)) 
+
+            elif filename == "hw1-inst3.txt":
+                f = open("hw1-sol3.txt", "w")
+                f.write(FinalScore)
+                x=1
+                for i in range(1,n+1):
+                    f.writelines("\n")
+                    #f.writelines(str(orderedTable[x]))
+                    x = x+1
+                    f.write(" ")
+                    f.write(str(i)) 
+            else:
+                f = open("output.txt", "w")
+                f.write(FinalScore)
+                x=1
+                for i in range(1,n+1):
+                    f.writelines("\n")
+                    #f.writelines(str(orderedTable[x]))
+                    x = x+1
+                    f.write(" ")
+                    f.write(str(i))
+
 
             f.close()
 

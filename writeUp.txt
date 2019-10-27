@@ -1,20 +1,17 @@
-who is sitting across?
-who is sitting next?
+How to execute:
+$ Python3 nameOfinstance.txt
 
-variables : sitting positions
-values ; people at those positions
+Output:
+Txt solution file corresponding to the name of the instance.
 
-Constraints:
-- 1 person per seat
 
-With 20 People: 20! states
 
 Easy Approach -> Local Search
 - gives no guarantee
 
 
 Still need to get done:
-    Export to correct files.
+
     Export order of table.
     Comment Code
     Write writeUp
