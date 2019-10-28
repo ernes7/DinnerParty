@@ -1,20 +1,109 @@
+Ernesto Martinez
+ernes@pdx.edu
+CS 441 - Artifial Intelligence
+HW 1 - Dinner Party
+WriteUp
+
+Hardware and software setup:
+    macOS Mojave (Version 10.14.6)
+    Processor: 2.7Ghz Intel Core i5
+    Memory: 8 GB 1867 Mhz DDR3
+
 How to execute:
-$ Python3 nameOfinstance.txt
+    $ Python3 nameOfinstance.txt
+    (For example: python3 hw1-inst1.txt)
 
 Output:
-Txt solution file corresponding to the name of the instance.
+    Txt solution file corresponding to the name of the instance.
+    (For Example: hw1-sol1.txt)
+
+How the code works:
+
+    Data(x) :
+        Takes the name of the file input 
+        and convert data into a matrix to be used later
+
+    Convert(x,y,z) :
+        Takes 3 arguments. 
+            X = random table generated (placeholder)
+            Y = FileName Input to pass to Search()
+            Z = number of people to sit. 
+        Converts output of Search() as list into  a table 2x5.
+        Output the ordered table. 
 
 
+    Search Function / Algorithm Explained :
+        P = starting position to start the search
+        S = Any other person != P
+        M = matrix imported from instance file
+        L = level of likeness
+        List = Ordered List starting with P
 
-Easy Approach -> Local Search
-- gives no guarantee
+        Algorithm:
+            - Random picked P 
+            - It finds in the row P of M, the highest L in which P != S and S not in List
+            - Add that S with the highest L to List
+            - Now P = S 
+            - Repeat until all S's and P are in the List.
+        
+        Problem : 
+            - At the end of the search, when there are just 1 or 2 items left to add, 
+            it does not add anymore to list. It depends on the starting point P.
+
+        Fixer :
+            - A short loop goes through all P's and verify which still not in the list.
+            - It adds it.
+            - I dont believe that this problem cause any big effect on the final score
+            ordered list. It is still something to have in mind. 
+
+        Final Analysis :
+            Local Search is applied to find the best solution among 
+            all the candidate solutions. Every different solution is 
+            a different starting point for P. It also uses Depth First Search Longest Path
+            to find for a better score. This approach is not deterministic since it can provide 
+            different solutions. ( For example, if in those 60 seconds at least one person is never 
+            used as starting point, then its never guarantee to get the max score possible .)
+        
 
 
-Still need to get done:
+    
+    Scoring(X,Y,Z) : 
+        The Purpose of this function is to get the score 
+        of any given table.
+        Takes 3 arguments. 
+            X = any given table to score
+            Y = FileName Input to pass to data() and obtain matrix
+            Z = number of people at the dinner
+        It adds all the scores horizontally (people sitting next to each other) 
+        Then it adds people sitting accross from each other ( Vertically)
+        It takes in account who are guests and who are hosts in each of the cases.
+        Output an score. 
 
-    Export order of table.
-    Comment Code
-    Write writeUp
+    Main() :
+        Main() receives the name of the file.
+        Main() checks to for the file to verify its existence in the folder.
+        This next steps are repeated it for 60 seconds : 
+            Filename is then passed to convert() which calls search() which calls data()
+            At this point, the matrix was made and the ordered list from the Algorithm
+            was converted into the final table.
+            Next, Scoring() is called.
+        When the time ends, the best score is exported to a txt file. 
+        Also, the ordered table is exported. 
+        Program Ends. 
+          
+
+How the code did: 
+    All my focus was to try to twist the Local Search algorithm to fit the 
+    problem. I know there were many ways to do it but I did the one I understood the 
+    most and I modify it. Probably with a different approach I could of get better solutions
+    or not. I would say that my solution is not the most efficient, but its not the worst 
+    at all. I got about 60% of the highest score in most of the intances. 
+    Other approach I could of done:
+        - Making the table one person at a time. Finding the best combination to seat first
+        and then find the best combination to seat second. It is a recursive approach which
+        can provide a really high deterministic score. 
+
+
 
 
 

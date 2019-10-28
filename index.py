@@ -5,12 +5,10 @@ import random
 import sys
 import time
 
-
-#tables with random data to be replaced later
-#table = numpy.array([])
-#table = numpy.random.randint(1,10, size=(2,5))
-
 # Matrix from file set up.
+# Data(x) takes the name of the file
+# input and convert data into a 
+# matrix to be used later
 def data(filename):
     inst = open(filename, "r")
     f = inst.readline()
@@ -22,6 +20,9 @@ def data(filename):
     return matrix
 
 # search path to seat people at the table
+# Search calls data to use the matrix
+# Algorithm explained in WriteUp
+# Output list with algorithm result.
 def search(filename,n):
     m = data(filename) #matrix of guest and hosts
 
@@ -31,8 +32,7 @@ def search(filename,n):
     
     to = [] #table order
     p = random.randint(0,n-1) # random vertex to start
-    #if filename == "hw1-inst2.txt": #solves a bug with inst2
-        #p=1
+
     print("P=",p)
 
     r = p
