@@ -134,7 +134,7 @@ def main():
             #https://stackoverflow.com/questions/24374620/python-loop-to-run-for-certain-amount-of-seconds
             FinalScore = scoring(orderedTable,filename,n)
 
-            t_end = time.time() + 1
+            t_end = time.time() + 10 #MODIFY THE TIME HERE!
             print("Waiting 60 seconds")
             while True:
                 orderedTable = convert(table,filename,n)
@@ -146,15 +146,35 @@ def main():
                 if time.time() > t_end:
                     break
 
+            #test
+            orderedTable = search(filename,n)
+            
+            orderedTable = numpy.asarray(orderedTable, dtype=int)
+            orderedTable = orderedTable+1
+
+            #convert MaxTable to List
+            #maxList = []
+            #i = 0
+            #for i in range(0,nHalf):
+            #    maxList.append(maxTable[0][i])
+            #for i in range(0,nHalf):
+            #    maxList.append(maxTable[1][i])
+            #print(maxList)
+            #maxList = numpy.asarray(maxList, dtype=int)
+            #maxList = maxList+1
+            
+
+            
+
             #Exporting Data
             FinalScore = str(FinalScore)
             if filename == "hw1-inst1.txt":
                 f = open("hw1-sol1.txt", "w")
                 f.write(FinalScore)
-                x=1
+                x=0
                 for i in range(1,n+1):
                     f.writelines("\n")
-                    #f.writelines(str(orderedTable[x]))
+                    f.writelines(str(orderedTable[x]))
                     x = x+1
                     f.write(" ")
                     f.write(str(i)) 
@@ -162,10 +182,10 @@ def main():
             elif filename == "hw1-inst2.txt":
                 f = open("hw1-sol2.txt", "w")
                 f.write(FinalScore)
-                x=1
+                x=0
                 for i in range(1,n+1):
                     f.writelines("\n")
-                    #f.writelines(str(orderedTable[x]))
+                    f.writelines(str(orderedTable[x]))
                     x = x+1
                     f.write(" ")
                     f.write(str(i)) 
@@ -173,10 +193,10 @@ def main():
             elif filename == "hw1-inst3.txt":
                 f = open("hw1-sol3.txt", "w")
                 f.write(FinalScore)
-                x=1
+                x=0
                 for i in range(1,n+1):
                     f.writelines("\n")
-                    #f.writelines(str(orderedTable[x]))
+                    f.writelines(str(orderedTable[x]))
                     x = x+1
                     f.write(" ")
                     f.write(str(i)) 
@@ -199,13 +219,13 @@ def main():
             print(filename,"not in directory")
     else:
         print("Incorrect Number of Arguments")
-    
+
     print(FinalScore)
-    print(maxTable)
+
+    
 
 
    
-
 
 
 
